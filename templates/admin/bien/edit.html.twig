@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title "AgenceSymf | Gérer les biens" %}
+
+{% block body %}
+
+        <div class="container mt-4">
+            <h2>Editer le Bien</h2>
+            {{ include('admin/bien/_form.html.twig', {form: form, button: 'Editer'}) }}
+        </div>
+{% endblock %}

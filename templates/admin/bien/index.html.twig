@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title "AgenceSymf | Gérer les biens" %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Gérer les biens</h1>
+        {% for message in app.flashes('sucess') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for bien in bien %}
+                    <tr>
+                        <td>{{ bien.title }}</td>
+                        <td>
+                            <a href="{{ path('admin.bien.edit', {id: bien.id}) }}" class="btn btn-secondary">Editer</a>
+                            <form method="POST" action="{{ path('admin.bien.delete', {id: bien.id}) }}" style="display: inline-block"
+                            onsubmit="return confirm('Etes-vous sûr ?')">
+                                <!-- _method <- symfony défini notre propre méthode via une valeur donné-->
+                                <input type="hidden" name="_method" value="DELETE">
+                                <!-- Ajoute un token à notre form vers le controller
+                                <input type="hidden" name="_token" value="{ {  csrf_token('delete' ~ bien.id) } }"> -->
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.bien.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

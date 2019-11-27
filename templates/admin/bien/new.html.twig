@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title "AgenceSymf | Gérer les biens" %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h2>Créer un nouveau bien</h2>
+        {{ include('admin/bien/_form.html.twig', {button: 'Créer'}) }}
+
+    </div>
+{% endblock %}

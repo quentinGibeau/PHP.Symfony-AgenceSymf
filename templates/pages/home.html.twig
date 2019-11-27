@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title "AgenceSymf" %}
+
+{% block body %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1>AgenceSymf</h1>
+    </div>
+</div>
+    <div class="container">
+        <h2>Les derniers biens</h2>
+        <div class="row flex">
+            <!-- Boucle for pour parcourirs tout les valeurs retourné par le repository de bien-->
+            {% for bien in propriete %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('bien.show', {id: bien.id, slug: bien.slug}) }}">{{ bien.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ bien.city }} ({{ bien.postalCode }})</p>
+                            <p class="text-primary">{{ bien.formattedPrice  }} €</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
